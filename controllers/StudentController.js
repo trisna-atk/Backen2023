@@ -5,34 +5,35 @@ class StudentController{
     }
     
     store(req, res) {
-         const newStudent = req.body;
-            studentsData.push(newStudent);
-             res.status(201).json(newStudent);
+        const {nama} = req.body
+        const data = {
+            messege: `Menambahka data student`,
+            data: []
+        }
+        res.json(data)
+           
     }
 
     update(req, res) {
         const { id } = req.params;
-        const updatedData = req.body;
-        const index = studentsData.findIndex(student => student.id === id);
+        const { nama } = req.body;
 
-        if (index !== -1) {
-             studentsData[index] = { ...studentsData[index], ...updatedData }; 
-             res.json(studentsData[index]);
-        } else {
-             res.status(404).json({ message: 'Student not found' }); 
-         }
+        const data = {
+            message : `Mengedit student id{id}, nama{nama}`, 
+            data : [],
+        }
+
+        res.json(data);
     }
 
     destroy(req, res) {
-         const { id } = req.params; 
-        const index = studentsData.findIndex(student => student.id === id); 
+        const { id } = req.params; 
+        
+        const data = {
+            messege: `Menghapus student id{id}`,
+        }
 
-        if (index !== -1) {
-            const deletedStudent = studentsData.splice(index, 1); 
-            res.json(deletedStudent); 
-         } else {
-            res.status(404).json({ message: 'Student not found' }); 
-    }
+        res.json(data)
 }
 }
 
